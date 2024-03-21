@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.security.Principal;
 import java.util.List;
 
 @RestController
@@ -24,4 +25,16 @@ public class UserController {
     public List<User> getUsers(){
        return userService.getUsers();
     }
+
+
+    /**
+     * @apiNote This API is created for get logged-in user
+     * @param principal is the interface which can have logged-in user
+     * @return logged-in user name
+     */
+    @GetMapping("/loggedInUser")
+    public String getLoggedInUserName(Principal principal){     /* Principal is the interface which can provide information about logged-in user */
+       return principal.getName();
+    }
 }
+
